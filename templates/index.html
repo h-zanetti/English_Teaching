@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <a href="#" class="col-sm mr-1 ml-2 col-container link-box" style="background-image: url({% static 'images/first_lady_and_kids.jpeg' %})">
+        <p class="text-uppercase text-light">Get Started</p>
+    </a>
+
+    <a href="#" class="col-sm ml-1 mr-1 col-cell photo-me link-box" style="background-image: url({% static 'images/me.jpg' %})">
+        <p class="text-uppercase text-light">Know your Teacher</p>
+    </a>
+
+    <a href="#" class="col-sm ml-1 mr-2 col-cell link-box"style="background-image: url({% static 'images/writing.webp' %})">
+        <p class="text-uppercase text-light">Schedule a class</p>
+    </a>
+</div>
+{% endblock %}
