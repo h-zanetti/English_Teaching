@@ -26,11 +26,11 @@
                 </li>
             </ul>
             {% if user.is_authenticated %}
-                <a class="btn btn-outline-light" href="#" role="button">PROFILE</a>
-                <a class="btn btn-outline-light ml-2" href="{% url 'logout' %}" role="button">LOGOUT</a>
+                <a class="btn btn-outline-light" href="#" role="button">Profile</a>
+                <a class="btn btn-outline-light ml-2" href="{% url 'logout' %}" role="button">Sign out</a>
             {% else %}
-                <a class="btn btn-outline-light" href="{% url 'login' %}" role="button">LOGIN</a>
-                <a class="btn btn-outline-light ml-2" href="{% url 'register' %}" role="button">REGISTER</a>
+                <a class="btn btn-outline-light" href="{% url 'login' %}" role="button">Sign in</a>
+                <a class="btn btn-outline-light ml-2" href="{% url 'register' %}" role="button">Register</a>
             {% endif %}
         </div>
     </nav>
