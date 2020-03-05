@@ -37,9 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user.apps.UserConfig',
-    'english.apps.EnglishConfig',
-    'crispy_forms',
+    'users.apps.UsersConfig',
+    'classes.apps.ClassesConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,9 +126,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'django_project/static')
 ]
 
-# Crispy forms settup
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-# Custom User
-AUTH_USER_MODEL = 'user.User'
+# CUSTOM USER AUTHENTICATION
+AUTH_USER_MODEL = 'users.User'
