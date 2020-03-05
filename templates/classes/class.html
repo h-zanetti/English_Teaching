@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>{{ clss.title }}</h1>
+    <p>{{ clss.description }}</p>
+    <hl></hl>
+
+    <ul>
+        {% for lesson in clss.lessons.all %}
+            <li>{{ lesson }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

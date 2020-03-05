@@ -52,6 +52,7 @@ def login(request):
                 return redirect('dashboard')
             else:
                 print("Email and password doesn't match")
+                print(f"{email} | {passwd}")
                 return redirect('login')
         else:
             print("This email is not registered")

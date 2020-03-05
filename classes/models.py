@@ -1,9 +1,15 @@
 from django.db import models
-from users.models import Teacher, Student
+
+class Lesson(models.Model):
+    title = models.CharField(max_length=150)
+    description = models.TextField(null=True)
+
+    def __str__(self):
+        return f'{self.title}'
 
 class Class(models.Model):
     title = models.CharField(max_length=150)
-    description = models.TextField()
+    description = models.TextField(null=True)
     lessons = models.ManyToManyField(Lesson)
     LEVEL_CHOICES = [
         ('1', 'Beginner'),
@@ -12,14 +18,8 @@ class Class(models.Model):
         ('4', 'Advanced'),
         ('5', 'Expert')
     ]
-    level = models.CharField(max_length=1, choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=1, choices=LEVEL_CHOICES, null=True)
 
     def __str__(self):
         return f'{self.title}'
 
-class Lesson(models.Model):
-    title = models.CharField(max_length=150)
-    description = models.TextField()
-
-    def __str__(self):
-        return f'{self.title}'

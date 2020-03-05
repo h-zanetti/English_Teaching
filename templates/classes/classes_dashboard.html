@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row mb-1 no-gutters">
+        <div class="col">
+            <h1>Find new classes</h1>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-3 text-light bg-dark mr-3">
+            <h3>Classes</h3>
+        </div>
+        <div class="col text-light bg-dark">
+            <h3>Lessons</h3>
+        </div>
+    </div>
+    {% for clss in classes %}
+        <div class="row mb-2 justify-content-between">
+            <div class="col-3 border mr-3">
+                <h2><a href="{% url 'clss' clss.id %}">{{ clss.title }}</a></h2>
+            </div>
+            <div class="col border">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            {% for lesson in clss.lessons.all %}
+                                <td><a href="#">{{ lesson }}</a></td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    {% endfor %}
+    
+</div>
+
+{% endblock %}
