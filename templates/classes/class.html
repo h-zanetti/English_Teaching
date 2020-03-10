@@ -3,15 +3,30 @@
 {% block content %}
 
 <div class="container">
-    <h1>{{ clss.title }}</h1>
-    <p>{{ clss.description }}</p>
-    <hl></hl>
-
-    <ul>
-        {% for lesson in clss.lessons.all %}
-            <li>{{ lesson }}</li>
-        {% endfor %}
-    </ul>
+    <div class="row justify-content-between mb-3">
+        <div class="col-6">
+            <h1>{{ clss.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>{{ clss.description }}</p>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <ul>
+                {% for lesson in clss.lessons.all %}
+                    <li>{{ lesson }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'enroll' clss.id %}" class="btn btn-outline-primary" role="button">Enroll</a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

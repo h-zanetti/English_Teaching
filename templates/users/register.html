@@ -35,10 +35,20 @@
                     <div class="form-group col-md-6 mb-2">
                         <input type="password" class="form-control" name="passwd2" placeholder="Confirm Password" required>
                     </div>
-                    <div class="col-6 mt-4 pt-2">
+                    <div class="form-group input-group col-md-12 mb-2 btn-group btn-group-toggle" data-toggle="buttons">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">I am a </label>
+                        </div>
+                        <select class="custom-select" name="user_type">
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                        </select>
+                    </div>
+                          
+                    <div class="col-6 mt-5 pt-2">
                         <a class="mt-2" href="{% url 'login' %}">Login instead</a>
                     </div>
-                    <div class="col-6 mt-4">
+                    <div class="col-6 mt-5">
                         <button type="submit" class="btn btn-primary  float-right">Next</button>
                     </div>
                 </div>

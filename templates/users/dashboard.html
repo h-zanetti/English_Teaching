@@ -2,6 +2,18 @@
 {% load static %}
 {% block content %}
 
-<h1>Welcome!</h1>
+<h1>Welcome back, {{ user.first_name }}!</h1>
+
+<div class="conteiner">
+    <h2>My Classes:</h2>
+
+    {% if user.is_student %}
+        {% for clss in user.student.classes.all %}
+            <p>{{ clss }}</p>
+        {% endfor %}
+
+    {% elif user.is_teacher %}
+    {% endif %}
+</div>
 
 {% endblock %}

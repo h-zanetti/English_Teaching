@@ -29,7 +29,13 @@ class User(AbstractUser):
         else:
             return None
 
-class Sudent(models.Model):
+    def is_student(self):
+        return Student.objects.filter(user_id=self.id).exists()
+
+    def is_teacher(self):
+        return Teacher.objects.filter(user_id=self.id).exists()
+
+class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     classes = models.ManyToManyField(Class)
 
