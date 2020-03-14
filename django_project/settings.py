@@ -126,6 +126,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'django_project/static')
 ]
 
+MADIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # CUSTOM USER AUTHENTICATION
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = 'login'

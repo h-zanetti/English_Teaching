@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib import auth
+from django.contrib import auth, messages
+import datetime as dt
 from .models import User, Student, Teacher
 
 
@@ -51,7 +52,10 @@ def register(request):
             print("You have to choose a user type (Student or Teacher)")
             return redirect('register')
 
-        return redirect('login')
+        user.payment_due = dt.date.today() + dt.timedelta(days=7)
+        user.save()
+        auth.login(request, user)
+        return redirect('dashboard')
     else:
         return render(request, 'users/register.html')
 
@@ -62,21 +66,30 @@ def login(request):
         if User.objects.filter(email=email).exists():
             user = User.objects.filter(email=email).first().check_password(passwd)
             if user is not None:
-                auth.login(request, user)
-                print("Welcome back!")
-                return redirect('dashboard')
+                if user.is_active:
+                    auth.login(request, user)
+                    today = dt.date.today()
+                    next_payment = user.payment_due - today
+                    if next_payment.days <= 7:
+                        messages.warning(request, f'Welcome back, {user.first_name}! Your next payment is in {next_payment.days} days')
+                    else:
+                        messages.success(request, f'Welcome back, {user.first_name}! Your account is up to date.')
+                    return redirect('dashboard')
+                else:
+                    messages.error(request, 'Oops.. It looks like your account was deactivated')
+                    return redirect('index') # TODO: Send user to payment view
             else:
-                print("Email and password doesn't match")
-                print(f"{email} | {passwd}")
+                messages.error(request, "Email and password doesn't match")
                 return redirect('login')
         else:
-            print("This email is not registered")
+            messages.error(request, "This email is not registered")
             return redirect('login')
     else:
         return render(request, 'users/login.html')
 
 def logout(request):
     auth.logout(request)
+    messages.success(request, 'You signed out successfully, see you soon!')
     return redirect('index')
 
 def dashboard(request):

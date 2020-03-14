@@ -15,6 +15,7 @@ class User(AbstractUser):
         ('O', 'Other'),
     ]
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    payment_due = models.DateField(null=True)
     username = None
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['birth_dt', 'gender']
@@ -28,7 +29,7 @@ class User(AbstractUser):
             return self
         else:
             return None
-
+    
     def is_student(self):
         return Student.objects.filter(user_id=self.id).exists()
 
